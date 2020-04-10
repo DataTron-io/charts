@@ -66,6 +66,8 @@ spec:
           resources:
 {{ toYaml .Values.prometheusOperator.resources | indent 12 }}
           securityContext:
+            # TODO - change from root user privileges to normal user eventually.
+            runAsUser: 0
             allowPrivilegeEscalation: false
             readOnlyRootFilesystem: true
         {{- if .Values.prometheusOperator.tlsProxy.enabled }}
@@ -89,6 +91,8 @@ spec:
             - containerPort: 8443
               name: https
           securityContext:
+            # TODO - change from root user privileges to normal user eventually.
+            runAsUser: 0
             allowPrivilegeEscalation: false
             readOnlyRootFilesystem: true
         {{- end }}

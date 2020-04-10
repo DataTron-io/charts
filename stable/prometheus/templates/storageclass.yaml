@@ -1,0 +1,13 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: prometheus
+provisioner: ceph.com/cephfs
+parameters:
+  # Datatron TODO - hard-coded value - not good, don't like it, but unfortunately needed.
+  # Datatron TODO - Any recommendations welcome to make this dynamic.
+  monitors: 10.8.0.87:6789
+  adminId: admin
+  adminSecretName: ceph-secret-admin
+  adminSecretNamespace: datatron
+  claimRoot: /pvc-volumes
